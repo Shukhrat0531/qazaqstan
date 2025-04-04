@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аккредитация - Talant Mekteb</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img class="log" src="{% static 'imgs/Талант копия.png' %}" style="width: 60px" alt="Логотип">
+            </a>
+        </div>
+        <nav class="nav" id="nav-menu">
+            <a href="#about">Біз туралы</a>
+            <a href="#uyrme">Үйірмелер</a>
+            <a href="#qyzmetker">Қызметкерлер</a>
+            <a href="#news">Жаңалықтар</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Абитуриенту</a>
+                <div class="dropdown-menu">
+                    <a href="">Как поступить</a>
+                    <a href="{% url 'specialties' %}">Специальности</a>
+                    <a href="#">Стоимость обучения</a>
+                    <a href="#">День открытых дверей</a>
+                </div>
+            </div>
+        </nav>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <section class="accreditation-section">
+        <div class="accreditation-container">
+            <h1>Аккредитация</h1>
+            <div class="accreditation-content">
+                <p>Talant Mekteb успешно прошёл процедуру институциональной и специализированной аккредитации, что подтверждает высокое качество образовательных программ и соответствие международным стандартам. Аккредитация гарантирует, что школа предоставляет образование, соответствующее требованиям Министерства образования и науки Республики Казахстан.</p>
+                
+                <h2>Цели аккредитации</h2>
+                <ul class="accreditation-list">
+                    <li>Подтверждение качества образовательных программ.</li>
+                    <li>Обеспечение прозрачности и открытости образовательного процесса.</li>
+                    <li>Повышение конкурентоспособности школы на национальном и международном уровнях.</li>
+                    <li>Содействие в улучшении учебных планов и программ.</li>
+                </ul>
+
+                <h2>Документы аккредитации</h2>
+                <div class="accreditation-documents">
+                    <div class="document-card">
+                        <h3>Сертификат аккредитации</h3>
+                        <p>Документ, подтверждающий успешное прохождение аккредитации в 2023 году.</p>
+                        <a href="#" class="btn doc-btn">Скачать</a>
+                    </div>
+                    <div class="document-card">
+                        <h3>Отчёт об аккредитации</h3>
+                        <p>Подробный отчёт о результатах аккредитации и рекомендациях.</p>
+                        <a href="#" class="btn doc-btn">Скачать</a>
+                    </div>
+                    <div class="document-card">
+                        <h3>План улучшений</h3>
+                        <p>План мероприятий по итогам аккредитации для повышения качества образования.</p>
+                        <a href="#" class="btn doc-btn">Скачать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="containerf">
+            <div class="footer-left">
+                <img src="{% static 'logo.png' %}" alt="Talant Mekteb" class="logo">
+                <p>Жеке мектептер мемлекеттік бағдарламамен сабақ береді...</p>
+            </div>
+            <div class="footer-center">
+                <h3>Байланыс</h3>
+                <p>Түркістан облысы, Сарыағаш ауданы, Сарыағаш қаласы, Майлықожа көшесі, 35а</p>
+            </div>
+            <div class="footer-right">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.540106352667!2d69.58194711087846!3d42.309677571077586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a91fd162714e83%3A0x75fbbb9a62012d36!2s%E2%84%961%20Talant%20mektep!5e0!3m2!1sru!2skz!4v1741972674462!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            const burger = document.querySelector('.burger');
+            nav.classList.toggle('show');
+            burger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

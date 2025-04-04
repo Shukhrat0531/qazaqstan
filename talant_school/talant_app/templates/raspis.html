@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img class="log" src="{% static 'imgs/Талант копия.png' %}" style="width: 60px" alt="Логотип">
+            </a>
+        </div>
+        <nav class="nav" id="nav-menu">
+            <a href="#about">Біз туралы</a>
+            <a href="#uyrme">Үйірмелер</a>
+            <a href="#qyzmetker">Қызметкерлер</a>
+            <a href="#news">Жаңалықтар</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Абитуриенту</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'student' %}">Как поступить</a>
+                    <a href="{% url 'specialties' %}">Специальности</a>
+                    <a href="#">Стоимость обучения</a>
+                    <a href="#">День открытых дверей</a>
+                </div>
+            </div>
+        </nav>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+    <section class="specialties-section">
+        <div class="specialties-container">
+            <h1>Специальности</h1>
+            
+<section class="clubs">
+    <div class="club-container">
+        <div class="club" style="background-image: url('nursing.jpg');">
+            <div class="overlay">
+                <h3>Сестринское дело</h3>
+                <p>Практическая подготовка медсестер</p>
+            </div>
+        </div>
+        <div class="club" style="background-image: url('pharmacy.jpg');">
+            <div class="overlay">
+                <h3>Фармация</h3>
+                <p>Современные методики обучения фармацевтов</p>
+            </div>
+        </div>
+        <div class="club" style="background-image: url('dentistry.jpg');">
+            <div class="overlay">
+                <h3>Стоматология</h3>
+                <p>Качественная подготовка стоматологов</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+                <!-- Добавьте другие специальности по необходимости -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="containerf">
+            <div class="footer-left">
+                <img src="{% static 'logo.png' %}" alt="Talant Mekteb" class="logo">
+                <p>Жеке мектептер мемлекеттік бағдарламамен сабақ береді...</p>
+            </div>
+            <div class="footer-center">
+                <h3>Байланыс</h3>
+                <p>Түркістан облысы, Сарыағаш ауданы, Сарыағаш қаласы, Майлықожа көшесі, 35а</p>
+            </div>
+            <div class="footer-right">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.540106352667!2d69.58194711087846!3d42.309677571077586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a91fd162714e83%3A0x75fbbb9a62012d36!2s%E2%84%961%20Talant%20mektep!5e0!3m2!1sru!2skz!4v1741972674462!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            const burger = document.querySelector('.burger');
+            nav.classList.toggle('show');
+            burger.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
