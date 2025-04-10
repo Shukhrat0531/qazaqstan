@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Студенческий парламент - Talant Mekteb</title>
+    <title>{{ parliament.title }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <!-- Шапка остаётся статичной -->
     <header class="header">
         <div class="logo">
             <a href="{% url 'home' %}">
@@ -15,19 +16,30 @@
             </a>
         </div>
         <nav class="nav" id="nav-menu">
-            <a href="#about">Біз туралы</a>
-            <a href="#uyrme">Үйірмелер</a>
-            <a href="#qyzmetker">Қызметкерлер</a>
-            <a href="#news">Жаңалықтар</a>
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle">Абитуриенту</a>
                 <div class="dropdown-menu">
-                    <a href="">Как поступить</a>
+                    <a href="{% url 'student' %}">Как поступить</a>
                     <a href="{% url 'specialties' %}">Специальности</a>
-                    <a href="#">Стоимость обучения</a>
-                    <a href="#">День открытых дверей</a>
                 </div>
             </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Студенту</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'raspisanie' %}">Расписание</a>
+                    <a href="{% url 'rules' %}">Правила внутреннего распорядка</a>
+                    <a href="{% url 'student_parliament' %}">Студенческий парламент</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Колледж</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'accreditation' %}">Агредация</a>
+                </div>
+            </div>
+            <a href="#qyzmetker">Администрация</a>
+            <a href="#news">Новости</a>
+            <a href="#about">О нас</a>
         </nav>
         <div class="burger" onclick="toggleMenu()">
             <div></div>
@@ -36,56 +48,54 @@
         </div>
     </header>
 
+    <!-- Основной контент -->
     <section class="parliament-section">
         <div class="parliament-container">
-            <h1>Студенческий парламент</h1>
+            <h1>{{ parliament.title }}</h1>
             <div class="parliament-content">
-                <p>Студенческий парламент Talant Mekteb — это орган студенческого самоуправления, созданный для представления интересов студентов, развития их инициатив и формирования активной гражданской позиции. Парламент действует в соответствии с концепцией развития органов самоуправления в образовательных учреждениях.</p>
+                <p>{{ parliament.description }}</p>
                 
-                <h2>Цели и задачи</h2>
+                <h2>{{ parliament.goals_title }}</h2>
                 <ul class="parliament-list">
-                    <li>Защита прав и интересов студентов.</li>
-                    <li>Организация мероприятий, направленных на развитие лидерских качеств.</li>
-                    <li>Содействие в реализации социальных и волонтёрских проектов.</li>
-                    <li>Формирование антикоррупционной культуры среди студентов.</li>
-                    <li>Взаимодействие с администрацией школы для улучшения образовательного процесса.</li>
+                    {% for item in parliament.goals_list.splitlines %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
                 </ul>
 
-                <h2>Направления деятельности</h2>
+                <h2>{{ parliament.activities_title }}</h2>
                 <div class="parliament-activities">
-                    <div class="activity-card">
-                        <h3>Социальные проекты</h3>
-                        <p>Участие в реализации социальных инициатив через платформу волонтёров, таких как экологические проекты, благотворительные акции и помощь нуждающимся.</p>
-                    </div>
-                    <div class="activity-card">
-                        <h3>Антикоррупционная деятельность</h3>
-                        <p>Работа клуба «Саналы ұрпак», направленного на развитие добропорядочности, антикоррупционной культуры и нулевой терпимости к коррупции.</p>
-                    </div>
-                    <div class="activity-card">
-                        <h3>Молодёжные инициативы</h3>
-                        <p>Поддержка студенческих проектов, направленных на развитие творчества, спорта и культурных мероприятий.</p>
-                    </div>
+                    {% for activity in parliament.activities.all %}
+                        <div class="activity-card">
+                            <h3>{{ activity.title }}</h3>
+                            <p>{{ activity.description }}</p>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Футер -->
     <footer>
         <div class="containerf">
             <div class="footer-left">
-                <img src="{% static 'logo.png' %}" alt="Talant Mekteb" class="logo">
-                <p>Жеке мектептер мемлекеттік бағдарламамен сабақ береді...</p>
+                <img src="{% static 'imgs/Талант копия.png' %}" alt="Медицинский колледж Казахстан" class="logo">
+                <p>{{ footer.address }}</p> <!-- Используем адрес из футера -->
             </div>
             <div class="footer-center">
                 <h3>Байланыс</h3>
-                <p>Түркістан облысы, Сарыағаш ауданы, Сарыағаш қаласы, Майлықожа көшесі, 35а</p>
+                <p>{{ footer.address }}</p>
+                <p>{{ footer.working_hours }}</p>
+                <p><a href="tel:{{ footer.phone }}" class="phone">{{ footer.phone }}</a></p>
+                <p><a href="mailto:{{ footer.email }}" class="email">{{ footer.email }}</a></p>
             </div>
             <div class="footer-right">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.540106352667!2d69.58194711087846!3d42.309677571077586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a91fd162714e83%3A0x75fbbb9a62012d36!2s%E2%84%961%20Talant%20mektep!5e0!3m2!1sru!2skz!4v1741972674462!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe src="{{ footer.map_url }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </footer>
 
+    <!-- Скрипты -->
     <script>
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');

@@ -4,147 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Как поступить ?</title>
+    <title>{{ admission.title }}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-   <header class="header">
-    <div class="logo">
-        <a href="{% url 'home' %}">
-            <img class="log" src="{% static 'imgs/Талант копия.png' %}" style="width: 60px" alt="Логотип">
-        </a>
-    </div>
-    <nav class="nav" id="nav-menu">
-        
-        
-       
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle">Абитуриенту</a>
-            <div class="dropdown-menu">
-                <a href="{% url 'student' %}">Как поступить</a>
-                <a href="{% url 'specialties'%}">Специальности</a>
-            </div>
+    <!-- Шапка остаётся статичной -->
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img class="log" src="{% static 'imgs/Талант копия.png' %}" style="width: 60px" alt="Логотип">
+            </a>
         </div>
-         <div class="dropdown">
-            <a href="#" class="dropdown-toggle">Студенту</a>
-            <div class="dropdown-menu">
-                <a href="{% url 'raspisanie'%}">Расписание</a>
-                <a href="{% url 'rules'%}">Правила внутренного распорядка</a>
-                <a href="{% url 'student_parliament'%}">Студенческий парламент</a>
+        <nav class="nav" id="nav-menu">
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Абитуриенту</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'student' %}">Как поступить</a>
+                    <a href="{% url 'specialties' %}">Специальности</a>
+                </div>
             </div>
-        </div>
-         <div class="dropdown">
-            <a href="#" class="dropdown-toggle">Колледж</a>
-            <div class="dropdown-menu">
-                <a href="{% url 'accreditation'%}">Агредация</a>
-               
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Студенту</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'raspisanie' %}">Расписание</a>
+                    <a href="{% url 'rules' %}">Правила внутреннего распорядка</a>
+                    <a href="{% url 'student_parliament' %}">Студенческий парламент</a>
+                </div>
             </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Колледж</a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'accreditation' %}">Агредация</a>
+                </div>
+            </div>
+            <a href="#qyzmetker">Администрация</a>
+            <a href="#news">Новости</a>
+            <a href="#about">О нас</a>
+        </nav>
+        <div class="burger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-         <a href="#qyzmetker">Администрация</a>
-        <a href="#news">Новости</a>
-        <a href="#about">О нас </a>
-    </nav>
-    <div class="burger" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</header>
+    </header>
 
+    <!-- Основной контент -->
     <section class="apply-section">
         <div class="apply-container">
-            <h1>Как поступить в Медицинскому колледжу Казахстан</h1>
+            <h1>{{ admission.title }}</h1>
 
             <div class="apply-block">
-                <h2>Необходимые документы</h2>
+                <h2>{{ admission.documents_title }}</h2>
                 <ul class="apply-list">
-                    <li>Заявление на поступление</li>
-                    <li>Удостоверение личности и его копия</li>
-                    <li>Оригинал документа об образовании</li>
-                    <li>6 фотографий размером 3×4 см</li>
-                    <li>Медицинская справка формы № 075-У</li>
+                    {% for item in admission.documents_list.splitlines %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
                 </ul>
             </div>
 
             <div class="apply-block">
-                <h2>Профилирующие предметы</h2>
+                <h2>{{ admission.subjects_title }}</h2>
                 <ul class="apply-list">
-                    <li>Казахский или русский язык</li>
-                    <li>История Казахстана</li>
-                    <li>Биология</li>
-                    <li>Химия</li>
+                    {% for item in admission.subjects_list.splitlines %}
+                        <li>{{ item }}</li>
+                    {% endfor %}
                 </ul>
             </div>
 
             <div class="apply-block">
-                <h2>Дополнительная информация</h2>
-                <p>Зачисление происходит на конкурсной основе по среднему баллу аттестата. Абитуриенты проходят психометрическое тестирование.</p>
+                <h2>{{ admission.additional_info_title }}</h2>
+                <p>{{ admission.additional_info }}</p>
             </div>
 
             <div class="apply-info docs-info">
-                <strong>Приём документов:</strong> с 25 июня, с 09:00 до 18:00. Документы принимаются лично и через портал Egov.
+                <strong>Приём документов:</strong> {{ admission.reception_info }}
             </div>
 
             <div class="apply-info contact-info">
-                <p><strong>Адрес:</strong> г. Шымкент, ул. Желтоксан 22 / Жылкышиева 43</p>
-                <p><strong>Телефон:</strong> <a href="tel:+77252530910">+7 (7252) 53-09-10</a></p>
-                <p><strong>Email:</strong> <a href="mailto:info@shmk.kz">info@shmk.kz</a></p>
+                <p><strong>Адрес:</strong> {{ admission.address }}</p>
+                <p><strong>Телефон:</strong> <a href="tel:{{ admission.phone }}">{{ admission.phone }}</a></p>
+                <p><strong>Email:</strong> <a href="mailto:{{ admission.email }}">{{ admission.email }}</a></p>
             </div>
 
-            <a href="https://shmk.kz/kak-postupit/" class="btn apply-btn">Официальный сайт</a>
+            {% if admission.official_site_url %}
+                <a href="{{ admission.official_site_url }}" class="btn apply-btn">Официальный сайт</a>
+            {% endif %}
         </div>
     </section>
 
+    <!-- Футер -->
     <footer>
-      <div class="containerf">
-        <div class="footer-left">
-          <img
-            src="{% static 'imgs/Талант копия.png'%}"
-            alt="High School of Saryagash"
-            class="logo"
-            
-          />
-          <p>
-            Жеке мектептер мемлекеттік бағдарламамен сабақ береді, пәндері мен
-            сабақ бөлінісі де ұқсас. Алайда, бағдарлама мазмұны мен
-            педагогиканың жаңа форматына байланысты қызық идеялар ұсына алады.
-          </p>
+        <div class="containerf">
+            <div class="footer-left">
+                <img src="{% static 'imgs/Талант копия.png' %}" alt="Медицинский колледж Казахстан" class="logo">
+                <p>{{ footer.address }}</p> <!-- Используем адрес из футера -->
+            </div>
+            <div class="footer-center">
+                <h3>Байланыс</h3>
+                <p>{{ footer.address }}</p>
+                <p>{{ footer.working_hours }}</p>
+                <p><a href="tel:{{ footer.phone }}" class="phone">{{ footer.phone }}</a></p>
+                <p><a href="mailto:{{ footer.email }}" class="email">{{ footer.email }}</a></p>
+            </div>
+            <div class="footer-right">
+                <iframe src="{{ footer.map_url }}" width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
-        <div class="footer-center">
-          <h3>Байланыс</h3>
-          <p>
-            Түркістан облысы,  ауданы,  қаласы, Майлықожа
-            көшесі, 35а
-          </p>
-          <p>9:00-ден 18:00-ге дейін толық сменді оқыту</p>
-          <p><a href="tel:+77772528283" class="phone">+7-777-252-8283</a></p>
-          <p>
-            <a href="mailto:highschool.ofsaryagash.18@mail.ru" class="email"
-              >highschool.ofsaryagash.18@mail.ru</a
-            >
-          </p>
-          <div class="social-icons">
-            {% for social in social_links %}
-            <a href="{{ social.url }}"
-              ><img src="{{ social.icon.url }}" alt="{{ social.name }}"
-            /></a>
-            {% endfor %}
-            <a class="btn" href="https://wa.me/87478707743">Тікелей ватсапка жазу</a>
-          </div>
-        </div>
-        <div class="footer-right">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.540106352667!2d69.58194711087846!3d42.309677571077586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a91fd162714e83%3A0x75fbbb9a62012d36!2s%E2%84%961%20Talant%20mektep!5e0!3m2!1sru!2skz!4v1741972674462!5m2!1sru!2skz"
-            width="600"
-            height="450"
-            style="border: 0"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-      </div>
     </footer>
+
+    <!-- Скрипты -->
     <script>
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
@@ -153,7 +121,7 @@
             burger.classList.toggle('active');
         }
 
-        document.querySelector('.apply-btn').addEventListener('click', function(e) {
+        document.querySelector('.apply-btn') && document.querySelector('.apply-btn').addEventListener('click', function(e) {
             e.preventDefault();
             alert('Вы будете перенаправлены на официальный сайт!');
             window.location.href = this.href;

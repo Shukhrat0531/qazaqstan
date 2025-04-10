@@ -1907,3 +1907,12 @@ footer {
         font-size: 14px;
     }
 }
+.club-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.club-link:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.7); /* Например, затемнение при наведении */
+}

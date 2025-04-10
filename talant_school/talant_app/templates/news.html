@@ -4,34 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ news.title }} - Talant Mekteb</title>
+    <title>{{ news.title }} </title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
      <header class="header">
-      <div class="logo">
-       <a href="{% url 'home'%}">
-         <img
-          class="log"
-          src="{% static 'imgs/Талант копия.png'%}"
-          style="width: 60px"
-          alt=""
-        />
-       </a>
-      </div>
-      <nav class="nav">
-        <a href="#about">Біз туралы</a>
-        <a href="#uyrme">Үйірмелер</a>
-        <a href="#qyzmetker">Қызметкерлер</a>
-        <a href="#news">Жаңалықтар</a>
-      </nav>
-      <div class="burger" onclick="toggleMenu()">
+    <div class="logo">
+        <a href="{% url 'home' %}">
+            <img class="log" src="{% static 'imgs/Талант копия.png' %}" style="width: 60px" alt="Логотип">
+        </a>
+    </div>
+    <nav class="nav" id="nav-menu">
+        
+        
+       
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Абитуриенту</a>
+            <div class="dropdown-menu">
+                <a href="{% url 'student' %}">Как поступить</a>
+                <a href="{% url 'specialties'%}">Специальности</a>
+            </div>
+        </div>
+         <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Студенту</a>
+            <div class="dropdown-menu">
+                <a href="{% url 'raspisanie'%}">Расписание</a>
+                <a href="{% url 'rules'%}">Правила внутренного распорядка</a>
+                <a href="{% url 'student_parliament'%}">Студенческий парламент</a>
+            </div>
+        </div>
+         <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Колледж</a>
+            <div class="dropdown-menu">
+                <a href="{% url 'accreditation'%}">Агредация</a>
+               
+            </div>
+        </div>
+         <a href="#qyzmetker">Администрация</a>
+        <a href="#news">Новости</a>
+        <a href="#about">О нас </a>
+    </nav>
+    <div class="burger" onclick="toggleMenu()">
         <div></div>
         <div></div>
         <div></div>
-      </div>
-    </header>
-
+    </div>
+</header>
 
     <section class="news-detail">
         <div class="news-hero">
