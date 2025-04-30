@@ -4,11 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ rule.title }} - </title>
+    <title>{{ rule.title }} - Медицинский колледж</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Additional Styles for New Sections */
+        .hero-section {
+            position: relative;
+            height: 50vh;
+            background: url('https://images.unsplash.com/photo-1576091160550-2173fd1c9f34') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .infographic-section {
+            padding: 60px 20px;
+            background: #f9fafb;
+            text-align: center;
+        }
+        .infographic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .info-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+        .info-card h3 {
+            font-size: 20px;
+            color: #00c4ff;
+            margin-bottom: 10px;
+        }
+        .info-card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .quote-section {
+            padding: 60px 20px;
+            background: #00c4ff;
+            color: #fff;
+            text-align: center;
+        }
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quote-container blockquote {
+            font-size: 24px;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .quote-container cite {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            padding: 60px 20px;
+            background: #fff;
+            text-align: center;
+        }
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .cta-container h2 {
+            font-size: 32px;
+            color: #00c4ff;
+            margin-bottom: 20px;
+        }
+        .cta-container p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #333;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 196, 255, 0.5);
+        }
+        .cta-btn:hover {
+            background: #00c4ff;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Animation for Fade-In */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body>
-    <!-- Шапка остаётся статичной -->
+    <!-- Шапка -->
     <header class="header">
         <div class="logo">
             <a href="{% url 'home' %}">
@@ -34,7 +182,7 @@
             <div class="dropdown">
                 <a href="#" class="dropdown-toggle">Колледж</a>
                 <div class="dropdown-menu">
-                    <a href="{% url 'accreditation' %}">Агредация</a>
+                    <a href="{% url 'accreditation' %}">Аккредитация</a>
                 </div>
             </div>
             <a href="#qyzmetker">Администрация</a>
@@ -48,9 +196,17 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero-section fade-in">
+        <div class="hero-content">
+            <h1>{{ rule.title }}</h1>
+            <p>Ознакомьтесь с правилами внутреннего распорядка нашего колледжа для успешной учебы и комфортной жизни.</p>
+        </div>
+    </section>
+
     <!-- Основной контент -->
     <section class="rules-section">
-        <div class="rules-container">
+        <div class="rules-container fade-in">
             <h1>{{ rule.title }}</h1>
             <div class="rules-content">
                 <p>{{ rule.description }}</p>
@@ -81,11 +237,52 @@
         </div>
     </section>
 
+    <!-- Infographic Section -->
+    <section class="infographic-section fade-in">
+        <h2>Ключевые правила вкратце</h2>
+        <div class="infographic-container">
+            <div class="info-card">
+                <img src="https://img.icons8.com/ios-filled/100/00c4ff/clock.png" alt="Пунктуальность">
+                <h3>Пунктуальность</h3>
+                <p>Приходите на занятия вовремя и соблюдайте расписание.</p>
+            </div>
+            <div class="info-card">
+                <img src="https://img.icons8.com/ios-filled/100/00c4ff/dress-code.png" alt="Дресс-код">
+                <h3>Дресс-код</h3>
+                <p>Носите установленную форму и соблюдайте аккуратность.</p>
+            </div>
+            <div class="info-card">
+                <img src="https://img.icons8.com/ios-filled/100/00c4ff/no-smoking.png" alt="Запреты">
+                <h3>Запреты</h3>
+                <p>Курение и употребление алкоголя на территории запрещено.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section fade-in">
+        <div class="quote-container">
+            <blockquote>
+                "Соблюдение правил внутреннего распорядка помогает создать дисциплинированную и поддерживающую среду для всех студентов."
+            </blockquote>
+            <cite>— Директор колледжа</cite>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta-section fade-in">
+        <div class="cta-container">
+            <h2>Есть вопросы по правилам?</h2>
+            <p>Свяжитесь с администрацией колледжа для получения дополнительной информации или разъяснений.</p>
+            <a href="tel:{{ footer.phone }}" class="cta-btn">Связаться с нами</a>
+        </div>
+    </section>
+
     <!-- Футер -->
     <footer>
         <div class="containerf">
             <div class="footer-left">
-                <img src="{% static 'imgs/Талант копия.png' %}" alt="Медицинский колледж Казахстан" class="logo">
+                <img src="{% static 'imgs/' %}" alt="Медицинский колледж Казахстан" class="logo">
                 <p>{{ footer.address }}</p>
             </div>
             <div class="footer-center">
@@ -109,6 +306,20 @@
             nav.classList.toggle('show');
             burger.classList.toggle('active');
         }
+
+        // Fade-in animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>

@@ -1916,3 +1916,21 @@ footer {
 .club-link:hover .overlay {
     background-color: rgba(0, 0, 0, 0.7); /* Например, затемнение при наведении */
 }
+
+.form-service{
+      
+            background-color: #1E2532;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        .logo-container {
+            cursor: pointer;
+        }
+        .logo-container img {
+            width: 250px;
+            height: auto;
+        }
