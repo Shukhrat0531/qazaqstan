@@ -32,15 +32,19 @@ def index(request):
 
 def club_detail(request, club_id):
     club = get_object_or_404(Club, id=club_id)
+    footer = FooterContact.objects.first()  # Данные футера
+
     context = {
         'club': club,
+        'footer':footer
     }
     return render(request, 'club.html', context)
 
 
 def news(request,id):
     news = News.objects.get(id=id)
-    return render(request, 'news.html',{'news':news})
+    footer = FooterContact.objects.first() 
+    return render(request, 'news.html',{'news':news,'footer':footer})
 
 def student(request):
     admission = Admission.objects.first()  # Берём первую запись
@@ -52,10 +56,10 @@ def student(request):
     return render(request, 'student.html', context)
 
 def specialties(request):
-    specialties = Specialty.objects.filter(is_active=True)  # Берём только активные специальности
+    clubs = Club.objects.all()  # Берём только активные специальности
     footer = FooterContact.objects.first()  # Данные футера
     context = {
-        'specialties': specialties,
+        'clubs': clubs,
         'footer': footer,
     }
     return render(request, 'specialties.html', context)

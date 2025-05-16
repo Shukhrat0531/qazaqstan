@@ -12,7 +12,7 @@
     <header class="header">
         <div class="logo">
              <a href="{% url 'home' %}">
-                <img class="log" src="{% static 'imgs/logo.png' %}" style="width: 40px" alt="Логотип">
+                <img class="log" src="{% static 'imgs/logo9.png' %}" style="width: 40px" alt="Логотип">
             </a>
         </div>
         <nav class="nav" id="nav-menu">
@@ -93,25 +93,35 @@
     </section>
 
     <!-- Футер -->
-    <footer>
-        <div class="containerf">
-            <div class="footer-left">
-                <img src="{% static 'imgs/Талант копия.png' %}" alt="Медицинский колледж Казахстан" class="logo">
-                <p>{{ footer.address }}</p> <!-- Используем адрес из футера -->
-            </div>
-            <div class="footer-center">
-                <h3>Байланыс</h3>
-                <p>{{ footer.address }}</p>
-                <p>{{ footer.working_hours }}</p>
-                <p><a href="tel:{{ footer.phone }}" class="phone">{{ footer.phone }}</a></p>
-                <p><a href="mailto:{{ footer.email }}" class="email">{{ footer.email }}</a></p>
-            </div>
-            <div class="footer-right">
-                <iframe src="{{ footer.map_url }}" width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+      <footer>
+      <div class="containerf">
+        <div class="footer-left">
+           <a href="{% url 'home' %}">
+                <img class="log" src="{% static 'imgs/logo9.png' %}" style="width: 40px" alt="Логотип">
+            </a>
+          <p>{{ about.text1 }}</p>
+          <!-- Используем текст из About -->
         </div>
+        <div class="footer-center">
+          <h3>Контакты</h3>
+          <p>{{ footer.address }}</p>
+          <p>{{ footer.working_hours }}</p>
+          <p>
+            <a href="tel:{{ footer.phone }}" class="phone"
+              >{{ footer.phone }}</a
+            >
+          </p>
+          <p>
+            <a href="mailto:{{ footer.email }}" class="email"
+              >{{ footer.email }}</a
+            >
+          </p>
+        </div>
+        <div class="footer-right">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.36350282744!2d69.5967332750969!3d42.313445038046886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38a91e98f30856e5%3A0x1d677fa74ea0d71f!2z0YPQu9C40YbQsCDQotC-0LrQsNC10LLQsCAyNywg0KjRi9C80LrQtdC90YIgMTYwMDAw!5e0!3m2!1sru!2skz!4v1747377458950!5m2!1sru!2skz" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
     </footer>
-
     <!-- Скрипты -->
     <script>
         function toggleMenu() {
