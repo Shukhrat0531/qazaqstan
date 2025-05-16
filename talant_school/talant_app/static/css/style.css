@@ -564,6 +564,7 @@ footer {
         padding: 20px;
     }
     .nav.show {
+        margin: -10px;
         display: flex;
     }
     .burger {
